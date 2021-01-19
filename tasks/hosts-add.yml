@@ -31,7 +31,7 @@
     block: |-
       Host {{ hostvars[item]['vm_ip'] }} {{ hostvars[item]['inventory_hostname'] }}
         Hostname  {{ hostvars[item]['vm_ip'] }}
-        User {{ hostvars[item]['virt_infra_user'] | default( hostvars[groups['kvmhost'][0]]['ansible_user']) }}
+        User {{ hostvars[item]['virt_infra_user'] | default(ansible_user) }}
       {% if hostvars[item]['virt_infra_ssh_keys'] is not defined %}
       {% if hostvars[groups['kvmhost'][0]].result_ssh_key_list.files is defined and hostvars[groups['kvmhost'][0]].result_ssh_key_list.files %}
       {% for file in hostvars[groups['kvmhost'][0]].result_ssh_key_list.files %}

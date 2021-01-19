@@ -2,12 +2,12 @@
 # Set the default user
 system_info:
   default_user:
-    name: {{ virt_infra_user | default(lookup('env', 'USER')) }}
+    name: {{ virt_infra_user | default(ansible_user) }}
 
 # Unlock the default user
 chpasswd:
   list: |
-     {{ virt_infra_user | default(lookup('env', 'USER')) }}:{{ virt_infra_password | default(virt_infra_password) }}
+     {{ virt_infra_user | default(ansible_user) }}:{{ virt_infra_password | default(virt_infra_password) }}
   expire: False
 
 # System settings
